@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-user-login',
@@ -11,17 +9,27 @@ import * as firebase from 'firebase/app';
 })
 export class UserLoginComponent {
 
- user: Observable<firebase.User>;
+  user: Observable<firebase.User>;
 
-  constructor(public afAuth: AngularFireAuth) {
-    this.user = afAuth.authState;
+  constructor(public auth: AuthService) {
+    this.user = auth.user;
   }
 
-  login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+   signInWithGoogle(): void {
+    this.auth.googleLogin()
+      .then(() => this.afterSignIn());
   }
 
-  logout() {
-    this.afAuth.auth.signOut();
+  signOut() {
+    this.auth.signOut();
   }
+
+ private afterSignIn(): void {
+    // Do after login stuff here, such router redirects, toast messages, etc.
+    //this.router.navigate(['/']);
+    console.log(`jf log: afterSignIn`);
+  }
+
+
+
 }

@@ -1,2 +1,2 @@
-<button *ngIf="!( user | async)?.uid" md-mini-fab (click)="login()"><md-icon>lock_closed</md-icon></button>
-<button *ngIf="( user | async)?.uid" md-mini-fab (click)="logout()"><md-icon>lock_open</md-icon></button>
+<button *ngIf="!( user | async)?.uid" md-mini-fab (click)="signInWithGoogle()"><md-icon>lock_closed</md-icon></button>
+<button *ngIf="( user | async)?.uid" md-mini-fab (click)="signOut()"><md-icon>lock_open</md-icon></button>

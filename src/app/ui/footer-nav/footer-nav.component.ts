@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-footer-nav',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterNavComponent implements OnInit {
 
-  constructor() { }
+  user: Observable<firebase.User>;
+
+  constructor(public auth: AuthService) {
+    this.user = auth.user;
+  }
 
   ngOnInit() {
   }

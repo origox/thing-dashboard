@@ -1,7 +1,13 @@
-<app-header-nav>{{title}}</app-header-nav>
+<div id="header">
+    <app-header-nav id="header">{{title}}</app-header-nav>
+</div>
 
-<main>
-    <router-outlet></router-outlet>
-</main>
+<div id="content">
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+</div>
 
-<app-footer-nav></app-footer-nav>
+<div id="footer">
+    <app-footer-nav></app-footer-nav>
+</div>

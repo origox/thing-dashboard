@@ -3,20 +3,33 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 //import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
+  user: Observable<firebase.User>;
 
- authState: any = null;
+  constructor(private afAuth: AngularFireAuth) {
+    this.user = afAuth.authState;
+  }
 
-  constructor(private afAuth: AngularFireAuth,
-    //private db: AngularFireDatabase,
-    //private router: Router
-    ) {
+  googleLogin() {
+    const provider = new firebase.auth.GoogleAuthProvider()
+    return this.socialSignIn(provider);
+  }
 
-    this.afAuth.authState.subscribe((auth) => {
-      this.authState = auth;
-    });
+  private socialSignIn(provider) {
+    return this.afAuth.auth.signInWithPopup(provider)
+      .then((credential) => {
+        this.user = credential.user
+        //this.updateUserData()
+      })
+      .catch(error => console.log(error));
+  }
+
+  signOut(): void {
+    this.afAuth.auth.signOut();
+    //this.router.navigate(['/'])
   }
 
 }
