@@ -19,12 +19,18 @@ import { HeaderNavComponent } from './ui/header-nav/header-nav.component';
 import { FooterNavComponent } from './ui/footer-nav/footer-nav.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 
+// Devices
+import { DevicesService } from './devices/devices.service';
+import { DeviceListComponent } from './devices/device-list/device-list.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderNavComponent,
     FooterNavComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    DeviceListComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, DevicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
