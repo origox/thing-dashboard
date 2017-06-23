@@ -1,13 +1,17 @@
-<div id="header">
-    <app-header-nav id="header">{{title}}</app-header-nav>
-</div>
+<div id="main-layout">
 
-<div id="content">
-    <main>
-        <router-outlet></router-outlet>
-    </main>
-</div>
+    <div id="header">
+        <app-header-nav id="header">{{title}}</app-header-nav>
+    </div>
 
-<div id="footer">
-    <app-footer-nav></app-footer-nav>
+    <div id="content">
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+
+    <div id="footer">
+        <app-footer-nav></app-footer-nav>
+    </div>
+
 </div>
