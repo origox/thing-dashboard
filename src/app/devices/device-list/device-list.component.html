@@ -1,4 +1,4 @@
-<div class="app-content">
+<div class="device-layout">
     <md-card *ngFor="let device of devices | async" class="device-card">
         <md-card-title-group>
             <md-card-title>{{device.$key}}</md-card-title>
@@ -7,13 +7,20 @@
         </md-card-title-group>
 
         <md-card-content>
-            <p>{{ device.properties.time}}</p>
+
             <p *ngIf="device.properties.temp">Temp: {{ device.properties.temp}}</p>
         </md-card-content>
 
-        <button md-mini-fab color="accent">
+
+
+        <md-card-actions>
+            <!--<div class="card-footer">-->
+            {{ device.properties.time | date}}
+            <!--</div>-->
+            <button md-mini-fab color="accent">
                 <md-icon>send</md-icon>
-        </button>
+            </button>
+        </md-card-actions>
 
     </md-card>
 </div>
