@@ -4,11 +4,12 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 @Injectable()
 export class DevicesService {
 
-  devices: FirebaseListObservable<any[]> = null;
+  devices: FirebaseListObservable<any[]>;
 
   constructor(private db: AngularFireDatabase) { }
 
-  getDevicesList() {
+  // TODO refactor to plain observable to avoid pollution
+  getDevicesList(): FirebaseListObservable<any[]>  {
     this.devices = this.db.list('devices');
     return this.devices;
   }
