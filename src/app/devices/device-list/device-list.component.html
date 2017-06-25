@@ -13,15 +13,16 @@
         <md-card-content>
 
             <p *ngIf="device.properties.temp">Temp: {{ device.properties.temp}}</p>
+            <p *ngIf="device.properties.state">Actuator: {{ device.properties.state}}</p>
         </md-card-content>
 
 
 
-        <md-card-actions>
+        <md-card-actions style="display: flex;   justify-content: space-between;">
             <!--<div class="card-footer">-->
             {{ device.properties.time | date}}
             <!--</div>-->
-            <button md-mini-fab color="accent">
+            <button md-mini-fab color="accent" (click)='onActuatorEvent(device, device.properties.state === 0 ? 1 : 0)'>
                 <md-icon>send</md-icon>
             </button>
         </md-card-actions>

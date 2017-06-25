@@ -14,4 +14,10 @@ export class DevicesService {
     return this.devices;
   }
 
+  // Update an exisiting item
+  updateDevice(key: string, value: any): void {
+    this.devices.update(key, value)
+      .catch(error => console.log(`error: ${error}`))
+  }
+
 }
