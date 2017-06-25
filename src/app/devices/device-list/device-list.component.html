@@ -3,7 +3,11 @@
         <md-card-title-group>
             <md-card-title>{{device.$key}}</md-card-title>
             <md-card-subtitle>Sensor</md-card-subtitle>
-            <img md-card-sm-image src="../assets/images/temp-sensor.png">
+            <div [ngSwitch]="device.deviceMetadata.types">
+                <img md-card-sm-image *ngSwitchCase="'TEMP/HUM'" src="../assets/images/temp-sensor.png">
+                <img md-card-sm-image *ngSwitchCase="'LED'" src="../assets/images/light-bulb-icon.png">
+                <img md-card-sm-image *ngSwitchCase="'PIR'" src="../assets/images/alert-on.png">
+            </div>
         </md-card-title-group>
 
         <md-card-content>
