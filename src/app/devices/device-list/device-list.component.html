@@ -9,23 +9,22 @@
                 <img md-card-sm-image *ngSwitchCase="'PIR'" src="../assets/images/alert-on.png">
             </div>
         </md-card-title-group>
-
         <md-card-content>
-
             <p *ngIf="device.properties.temp">Temp: {{ device.properties.temp}}</p>
             <p *ngIf="device.properties.state">Actuator: {{ device.properties.state}}</p>
+            <p *ngIf="!device.properties.state">Sensor type</p>
         </md-card-content>
-
-
-
         <md-card-actions style="display: flex;   justify-content: space-between;">
             <!--<div class="card-footer">-->
             {{ device.properties.time | date}}
             <!--</div>-->
-            <button md-mini-fab color="accent" (click)='onActuatorEvent(device, device.properties.state === 0 ? 1 : 0)'>
+            <md-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" (click)='onActuatorEvent(device, device.properties.state === 0 ? 1 : 0)'>
+                Slide me!
+            </md-slide-toggle>
+            <!--
+            <button md-mini-fab color="accent" [class.on]="device.properties.state === 0" (click)='onActuatorEvent(device, device.properties.state === 0 ? 1 : 0)'>
                 <md-icon>send</md-icon>
-            </button>
+            </button>-->
         </md-card-actions>
-
     </md-card>
 </div>
