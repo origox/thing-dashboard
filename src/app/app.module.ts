@@ -22,6 +22,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
 // Devices
 import { DevicesService } from './devices/devices.service';
 import { DeviceListComponent } from './devices/device-list/device-list.component';
+import { DeviceDetailComponent } from './devices/device-detail/device-detail.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { DeviceListComponent } from './devices/device-list/device-list.component
     HeaderNavComponent,
     FooterNavComponent,
     UserLoginComponent,
-    DeviceListComponent
+    DeviceListComponent,
+    DeviceDetailComponent
   ],
   imports: [
     BrowserModule,

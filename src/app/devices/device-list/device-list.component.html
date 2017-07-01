@@ -2,7 +2,7 @@
     <md-card *ngFor="let device of devices | async" class="device-card">
         <md-card-title-group>
             <md-card-title>{{device.$key}}</md-card-title>
-            <md-card-subtitle>Sensor</md-card-subtitle>
+            <md-card-subtitle>{{device.deviceMetadata.types}}</md-card-subtitle>
             <div [ngSwitch]="device.deviceMetadata.types">
                 <img md-card-sm-image *ngSwitchCase="'TEMP/HUM'" src="../assets/images/temp-sensor.png">
                 <img md-card-sm-image *ngSwitchCase="'LED'" src="../assets/images/light-bulb-icon.png">
@@ -10,17 +10,25 @@
             </div>
         </md-card-title-group>
         <md-card-content>
-            <p *ngIf="device.properties.temp">Temp: {{ device.properties.temp}}</p>
-            <p *ngIf="device.properties.state">Actuator: {{ device.properties.state}}</p>
-            <p *ngIf="!device.properties.state">Sensor type</p>
+            <p *ngIf="device.properties.temp">Temp: {{ device.properties.temp}}*C</p>
+            <p *ngIf="device.properties.temp">Hum: {{ device.properties.humidity}}%</p>
+            <div *ngIf="device.deviceMetadata.types=='PIR'">
+                <p>Status: {{ device.properties.state==false ? 'Nobody is here' : 'Someone is here'}}</p>
+            </div>
+            <div *ngIf="device.deviceMetadata.types=='LED'">
+                <p>Status: {{ device.properties.state==0 ? 'OFF' : 'ON'}}</p>
+            </div>
+            <!--<p *ngIf="!device.properties.state">Sensor type</p>-->
         </md-card-content>
         <md-card-actions style="display: flex;   justify-content: space-between;">
             <!--<div class="card-footer">-->
-            {{ device.properties.time | date}}
+            {{ device.properties.time | date:'y MMMd H:m'}}
             <!--</div>-->
-            <md-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" (click)='onActuatorEvent(device, device.properties.state === 0 ? 1 : 0)'>
-                Slide me!
-            </md-slide-toggle>
+            <div>
+                <md-slide-toggle *ngIf="device.deviceMetadata.types=='LED'" class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" (click)='onActuatorEvent(device, device.properties.state === 0 ? 1 : 0)'>
+                    ON/OFF
+                </md-slide-toggle>
+            </div>
             <!--
             <button md-mini-fab color="accent" [class.on]="device.properties.state === 0" (click)='onActuatorEvent(device, device.properties.state === 0 ? 1 : 0)'>
                 <md-icon>send</md-icon>
