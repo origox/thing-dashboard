@@ -18,17 +18,15 @@
             <div *ngIf="device.deviceMetadata.types=='LED'">
                 <p>Status: {{ device.properties.state==0 ? 'OFF' : 'ON'}}</p>
             </div>
+            <md-slide-toggle *ngIf="device.deviceMetadata.types=='LED'" class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" (click)='onActuatorEvent(device, device.properties.state === 0 ? 1 : 0)'>
+                ON/OFF
+            </md-slide-toggle>
             <!--<p *ngIf="!device.properties.state">Sensor type</p>-->
         </md-card-content>
         <md-card-actions style="display: flex;   justify-content: space-between;">
             <!--<div class="card-footer">-->
             {{ device.properties.time | date:'y MMMd H:m'}}
             <!--</div>-->
-            <div>
-                <md-slide-toggle *ngIf="device.deviceMetadata.types=='LED'" class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" (click)='onActuatorEvent(device, device.properties.state === 0 ? 1 : 0)'>
-                    ON/OFF
-                </md-slide-toggle>
-            </div>
             <!--
             <button md-mini-fab color="accent" [class.on]="device.properties.state === 0" (click)='onActuatorEvent(device, device.properties.state === 0 ? 1 : 0)'>
                 <md-icon>send</md-icon>
