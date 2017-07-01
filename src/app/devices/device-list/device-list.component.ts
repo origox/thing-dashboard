@@ -19,6 +19,7 @@ export class DeviceListComponent implements OnInit {
 
   ngOnInit() {
     this.devices = this.deviceService.getDevicesList();
+    //this.checked = this.devices.properties.state
   }
 
   onActuatorEvent(key: any, value: number) {
