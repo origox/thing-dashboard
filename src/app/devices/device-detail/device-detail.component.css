@@ -1,0 +1,18 @@
+.device-card {
+    width: 200px;
+    /*height: 200px;*/
+    margin: 5px;
+}
+
+.device-layout {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-footer {
+    font-size: 8px;
+}
+
+.example-margin {
+    margin: 5px;
+}

@@ -31,8 +31,8 @@ import { DeviceDetailComponent } from './devices/device-detail/device-detail.com
     HeaderNavComponent,
     FooterNavComponent,
     UserLoginComponent,
-    DeviceListComponent,
-    DeviceDetailComponent
+    DeviceDetailComponent,
+    DeviceListComponent
   ],
   imports: [
     BrowserModule,

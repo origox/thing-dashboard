@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DevicesService } from '../devices.service';
 
 @Component({
   selector: 'app-device-detail',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeviceDetailComponent implements OnInit {
 
-  constructor() { }
+  @Input() device: any;
+
+  color = 'accent';
+  checked = false;
+  disabled = false;
+
+
+  constructor(private deviceService: DevicesService) { }
 
   ngOnInit() {
+  }
+
+  onActuatorEvent(key: any, value: number) {
+    this.checked = value === 1 ? false : true;
+    console.log(`onActuatorEvent - ${value} checked: ${this.checked}`);
+
+    this.deviceService.updateDevice(this.device.$key, { 'properties': { 'time': Date(), 'state': value } });
+  }
+
+  isState() {
+    
   }
 
 }
