@@ -19,7 +19,7 @@
     <md-card-content>
         <p *ngIf="device.properties.temp">Temp: {{ device.properties.temp}}*C</p>
         <p *ngIf="device.properties.temp">Hum: {{ device.properties.humidity}}%</p>
-        <a *ngIf="device.properties.temp" md-raised-button routerLink="statistics">Raised button</a>
+        <a *ngIf="device.properties.temp" md-raised-button routerLink="../statistics">Raised button</a>
         <div *ngIf="device.deviceMetadata.types=='PIR'">
             <p>Status: {{ device.properties.state==false ? 'Nobody is here' : 'Someone is here'}}</p>
         </div>

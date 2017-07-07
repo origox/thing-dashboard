@@ -5,11 +5,12 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 export class DevicesService {
 
   devices: FirebaseListObservable<any[]>;
+  logs: FirebaseListObservable<any[]>;
 
   constructor(private db: AngularFireDatabase) { }
 
   // TODO refactor to plain observable to avoid pollution
-  getDevicesList(): FirebaseListObservable<any[]>  {
+  getDevicesList(): FirebaseListObservable<any[]> {
     this.devices = this.db.list('devices');
     return this.devices;
   }
@@ -18,6 +19,11 @@ export class DevicesService {
   updateDevice(key: string, value: any): void {
     this.devices.update(key, value)
       .catch(error => console.log(`error: ${error}`))
+  }
+
+  getTempList(): FirebaseListObservable<any[]> {
+    this.logs = this.db.list('devices/mydhtsensor1/logs');
+    return this.logs;
   }
 
 }

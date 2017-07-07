@@ -23,7 +23,10 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { DevicesService } from './devices/devices.service';
 import { DeviceListComponent } from './devices/device-list/device-list.component';
 import { DeviceDetailComponent } from './devices/device-detail/device-detail.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
+// Graphs
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { DeviceDetailComponent } from './devices/device-detail/device-detail.com
     FooterNavComponent,
     UserLoginComponent,
     DeviceDetailComponent,
-    DeviceListComponent
+    DeviceListComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ import { DeviceDetailComponent } from './devices/device-detail/device-detail.com
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ChartsModule
   ],
   providers: [AuthService, DevicesService],
   bootstrap: [AppComponent]
